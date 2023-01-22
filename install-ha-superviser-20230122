@@ -50,3 +50,12 @@ sudo dpkg -i os-agent_1.4.1_linux_x86_64.deb
 wget https://github.com/home-assistant/supervised-installer/releases/latest/download/homeassistant-supervised.deb
 dpkg -i homeassistant-supervised.deb
 
+
+ставим Portainer - 
+docker pull portainer/portainer-ce
+docker volume create portainer_data
+docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+
+Веб интерфейс Portainer - IP adress:9000
+Веб интерфейс Home Assistant - IP adress:8123
+
