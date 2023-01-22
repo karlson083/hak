@@ -1,0 +1,52 @@
+download from https://www.debian.org/download
+https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.6.0-amd64-netinst.iso
+
+write to flash with https://rufus.ie/ru/
+https://github.com/pbatard/rufus/releases/download/v3.21/rufus-3.21p.exe
+
+Install debian with SSH server
+
+setup ssh key authorization
+https://putty.org.ru/articles/putty-ssh-key-auth.html
+
+
+
+mkdir .ssh
+chmod 700 .ssh
+cd .ssh
+nano authorized_keys2
+chmod 600 authorized_keys2
+
+su
+apt-get install \
+apparmor \
+jq \
+wget \
+curl \
+udisks2 \
+libglib2.0-bin \
+network-manager \
+dbus \
+lsb-release \
+systemd-journal-remote \
+sudo -y
+
+gpasswd -a $USER sudo
+
+exit
+
+sudo apt update
+sudo apt upgrade -y
+
+curl -fsSL get.docker.com | sh
+sudo gpasswd -a $USER docker
+newgrp docker
+
+
+https://github.com/home-assistant/os-agent/releases/latest
+wget https://github.com/home-assistant/os-agent/releases/download/1.4.1/os-agent_1.4.1_linux_x86_64.deb
+sudo dpkg -i os-agent_1.4.1_linux_x86_64.deb
+
+wget https://github.com/home-assistant/supervised-installer/releases/latest/download/homeassistant-supervised.deb
+dpkg -i homeassistant-supervised.deb
+
